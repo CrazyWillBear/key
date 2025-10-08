@@ -34,7 +34,7 @@ var unlockCmd = &cobra.Command{
 		// Get password
 		password, err := auth.PromptForPassword(false)
 		if err != nil {
-			cmd.Println("::Error getting password:", err)
+			cmd.PrintErrln("::Error getting password:", err)
 			return
 		}
 
@@ -46,7 +46,7 @@ var unlockCmd = &cobra.Command{
 		}
 		usrVault, err := vault.LoadVault(args[0])
 		if err != nil {
-			cmd.Println("\r::Error loading vault:", err)
+			cmd.PrintErrln("\r::Error loading vault:", err)
 			return
 		}
 		if verbose {
@@ -59,15 +59,17 @@ var unlockCmd = &cobra.Command{
 		}
 		k := key.LoadKey(globalConfig.KeyPath)
 		if k == nil {
-			cmd.Println("\r::Key cannot be found.")
+			cmd.PrintErrln("\r::Key cannot be found.")
 			return
 		}
-		cmd.Println("\r\t- Key loaded.   ")
+		if verbose {
+			cmd.Println("\r\t- Key loaded.   ")
+		}
 
 		// Decrypt key
 		err = k.Decrypt(password)
 		if err != nil {
-			cmd.Println("::Error decrypting key:", err)
+			cmd.PrintErrln("::Error decrypting key:", err)
 			return
 		}
 		if verbose {
@@ -80,7 +82,7 @@ var unlockCmd = &cobra.Command{
 		}
 		err = usrVault.Unlock(k.DecryptedKeyBytes)
 		if err != nil {
-			cmd.Println("\r::Error unlocking vault:       ", err)
+			cmd.PrintErrln("\r::Error unlocking vault:       ", err)
 			return
 		}
 		if verbose {
@@ -108,7 +110,7 @@ var lockCmd = &cobra.Command{
 		// Get password
 		password, err := auth.PromptForPassword(false)
 		if err != nil {
-			cmd.Println("::Error getting password:", err)
+			cmd.PrintErrln("::Error getting password:", err)
 			return
 		}
 
@@ -120,7 +122,7 @@ var lockCmd = &cobra.Command{
 		}
 		usrVault, err := vault.LoadVault(args[0])
 		if err != nil {
-			cmd.Println("\r::Error loading vault:", err)
+			cmd.PrintErrln("\r::Error loading vault:", err)
 			return
 		}
 		if verbose {
@@ -133,7 +135,7 @@ var lockCmd = &cobra.Command{
 		}
 		k := key.LoadKey(globalConfig.KeyPath)
 		if k == nil {
-			cmd.Println("\r::Error loading key")
+			cmd.PrintErrln("\r::Error loading key")
 			return
 		}
 		if verbose {
@@ -143,7 +145,7 @@ var lockCmd = &cobra.Command{
 		// Decrypt key
 		err = k.Decrypt(password)
 		if err != nil {
-			cmd.Println("::Error decrypting key:", err)
+			cmd.PrintErrln("::Error decrypting key:", err)
 			return
 		}
 		if verbose {
@@ -156,7 +158,7 @@ var lockCmd = &cobra.Command{
 		}
 		err = usrVault.Lock(k.DecryptedKeyBytes)
 		if err != nil {
-			cmd.Println("\r::Error locking vault:       ", err)
+			cmd.PrintErrln("\r::Error locking vault:       ", err)
 			return
 		}
 		if verbose {
@@ -190,13 +192,13 @@ var newKeyCmd = &cobra.Command{
 			// Decrypt existing key to verify password
 			password, err := auth.PromptForPassword(false)
 			if err != nil {
-				cmd.Println("\t- Error getting password:", err)
+				cmd.PrintErrln("\t- Error getting password:", err)
 				return
 			}
 
 			err = k.Decrypt(password)
 			if err != nil {
-				cmd.Println("\t- Incorrect password, aborting...", err)
+				cmd.PrintErrln("\t- Incorrect password, aborting...", err)
 				return
 			}
 
