@@ -22,7 +22,7 @@ func main() {
 	// Load config
 	cfg, err := config.Load()
 	if err != nil {
-		return
+		fmt.Println("::Failed to load config:", err)
 	}
 
 	// Execute commands

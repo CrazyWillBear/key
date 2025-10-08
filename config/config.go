@@ -22,10 +22,11 @@ func Load() (*Config, error) {
 	viper.SetDefault("key_path", "$HOME/.key/key.pem")
 
 	// Set config name and paths
+	homeDir, _ := os.UserHomeDir()
 	viper.SetConfigName("config")
 	viper.SetConfigType("toml")
 	viper.AddConfigPath(".")
-	viper.AddConfigPath("$HOME/.key")
+	viper.AddConfigPath(filepath.Join(homeDir, ".key"))
 
 	// Enable environment variable support
 	viper.AutomaticEnv()
