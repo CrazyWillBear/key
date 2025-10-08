@@ -59,7 +59,7 @@ var unlockCmd = &cobra.Command{
 		}
 		k := key.LoadKey(globalConfig.KeyPath)
 		if k == nil {
-			cmd.PrintErrln("\r::Key cannot be found.")
+			cmd.PrintErrln("\r::Key cannot be found, have you run `key newkey`?.")
 			return
 		}
 		if verbose {
@@ -135,7 +135,7 @@ var lockCmd = &cobra.Command{
 		}
 		k := key.LoadKey(globalConfig.KeyPath)
 		if k == nil {
-			cmd.PrintErrln("\r::Error loading key")
+			cmd.PrintErrln("\r::Error loading key, have you ran `key newkey`?")
 			return
 		}
 		if verbose {
