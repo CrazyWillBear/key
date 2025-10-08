@@ -5,8 +5,10 @@ package config
 
 import (
 	"errors"
+	"fmt"
 	"os"
 	"path/filepath"
+	"strings"
 
 	"github.com/spf13/viper"
 )
@@ -18,11 +20,15 @@ type Config struct {
 
 // Load initializes and loads configuration using Viper
 func Load() (*Config, error) {
+	homeDir, err := os.UserHomeDir()
+	if err != nil {
+		return nil, err
+	}
+
 	// Set default values
-	viper.SetDefault("key_path", "$HOME/.key/key.pem")
+	viper.SetDefault("key_path", getDefaultKeyPath(homeDir))
 
 	// Set config name and paths
-	homeDir, _ := os.UserHomeDir()
 	viper.SetConfigName("config")
 	viper.SetConfigType("toml")
 	viper.AddConfigPath(".")
@@ -75,10 +81,14 @@ func createDefaultConfig() error {
 	}
 
 	// Create default config content
-	defaultConfig := `# Key Manager Configuration
-key_path = "$HOME/.key/key.pem"
-`
+	defaultConfig := fmt.Sprintf(`# Key Manager Configuration
+key_path = "%s"
+`, strings.ReplaceAll(getDefaultKeyPath(homeDir), `\`, `/`)) // Handle Windows paths
 
 	// Write config file
 	return os.WriteFile(configPath, []byte(defaultConfig), 0644)
+}
+
+func getDefaultKeyPath(homeDir string) string {
+	return filepath.Join(homeDir, ".key", "key.pem")
 }
