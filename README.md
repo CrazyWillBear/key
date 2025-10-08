@@ -19,6 +19,8 @@
 
 # Key
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/a6b66a290bab42038701fb2cea8ab0f6)](https://app.codacy.com/gh/CrazyWillBear/key?utm_source=github.com&utm_medium=referral&utm_content=CrazyWillBear/key&utm_campaign=Badge_Grade)
+
 A command-line utility for securely encrypting and decrypting files using a key + password combo.
 
 ## Overview
