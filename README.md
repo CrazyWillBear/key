@@ -1,3 +1,13 @@
+# Key
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/4d83a48bbf744eb283015cddc7c5c28e)](https://app.codacy.com/gh/CrazyWillBear/key/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
+[![CodeFactor](https://www.codefactor.io/repository/github/crazywillbear/key/badge)](https://www.codefactor.io/repository/github/crazywillbear/key)
+![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/CrazyWillBear/key)
+
+A command-line utility for securely encrypting and decrypting files using a key + password combo.
+
+---
+
 <!-- TOC -->
 * [Key](#key)
   * [Overview](#overview)
@@ -16,10 +26,6 @@
     * [Build](#build)
   * [License](#license)
 <!-- TOC -->
-
-# Key
-
-A command-line utility for securely encrypting and decrypting files using a key + password combo.
 
 ## Overview
 
