@@ -61,7 +61,7 @@ chmod +x ./install.sh  # make install.sh executable
 
 Windows:
 ```pwsh
-./install.ps1  # run the install script in PowerShell
+.\install.ps1  # run the install script in PowerShell
 ```
 
 ## Usage
