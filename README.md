@@ -53,12 +53,15 @@ easy to use, with simple commands for locking and unlocking files, and it suppor
 
 ## Installation
 
+Linux / MacOS:
 ```sh
-# Build from source
-go build -o bin/key
+chmod +x ./install.sh  # make install.sh executable
+./install.sh  # run the install script
+```
 
-# Add to your PATH (optional)
-cp bin/key /usr/local/bin/
+Windows:
+```pwsh
+./install.ps1  # run the install script in PowerShell
 ```
 
 ## Usage
