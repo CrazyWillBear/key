@@ -51,4 +51,4 @@ if ($currentPath -notlike "*$installDir*") {
     Write-Host "$installDir is already in PATH" -ForegroundColor Yellow
 }
 
-Write-Host "Installation complete!" -ForegroundColor Green
+Write-Host "Installation complete! Run `key newkey` if this is a first time installation." -ForegroundColor Green

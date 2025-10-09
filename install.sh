@@ -25,4 +25,4 @@ sudo mv "bin/key" "/usr/bin/key"
 # Make it executable
 sudo chmod +x "/usr/bin/key"
 
-echo "Installation complete!"
+echo "Installation complete! Run `key newkey` if this is a first time installation."
